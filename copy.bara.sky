@@ -1,0 +1,17 @@
+core.workflow(
+    name = "closure_library",
+    origin = git.origin(
+        url = "https://github.com/google/closure-library.git",
+        ref = "master",
+    ),
+    destination = git.destination(
+        url = "/Users/yannic/rules_closure_library_repro",
+        fetch = "master",
+    ),
+    origin_files = glob(["**"]),
+    destination_files = glob(["third_party/com_google_javascript_closure_library/**"]),
+    authoring = authoring.pass_thru("Foo <foo@foo.bar>"),
+    transformations = [
+        core.move("", "third_party/com_google_javascript_closure_library"),
+    ],
+)
